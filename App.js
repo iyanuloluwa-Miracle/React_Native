@@ -4,18 +4,12 @@ import { Linking, StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-web';
 
 export default function App() {
-  const [name,setName] = useState('Iyanu')
+  const [name,setName] = useState('Style Test')
 
   
-  const [session,setSession] = useState({ number:6, title: 'state'})
-  const [current,setCurrent] = useState(true)
-
+  
   const onClickHandler = ()=>{
-    setName('Programming with Dina')
-    setSession({ number:7, title: 'style'})
-    setCurrent(false)
-
-
+    setName('Style Test is Done')
   }
 
 
@@ -24,9 +18,9 @@ export default function App() {
   return (
     <View style={styles.body}>
       <Text style={styles.wrapper}>{name}</Text>
-      <Text style={styles.wrapper}>{current ?'current session': 'next session'}</Text>
-      <Text style={styles.wrapper}>This is session number {session.number} and about {session.title} </Text>
-      <Button title='update' onPress={onClickHandler}></Button>  
+      <View style={styles.button}>
+        <Button title='update' onPress={onClickHandler}></Button>  
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -35,15 +29,24 @@ export default function App() {
 const styles = StyleSheet.create({
   body:{
     flex:1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     alignItems:'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderWidth:10,
+    borderColor:'orange',
+    borderRadius:20,
+    margin: 40
   },
  
   wrapper:{
-    color:'white',
+    color:'black',
     fontSize:30,
-    fontStyle:'italic',
+    fontStyle:'black',
     margin:20
-  }
+  }, 
+  button:{
+    width:200,
+    height:150
+
+  } 
 });
