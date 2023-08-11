@@ -17,10 +17,22 @@ export default function App() {
 
   return (
     <View style={styles.body}>
-      <Text style={styles.wrapper}>{name}</Text>
-      <View style={styles.button}>
-        <Button title='update' onPress={onClickHandler}></Button>  
+      <View style={styles.view1}>
+        <Text style={styles.wrapper}>1</Text>
+
       </View>
+
+      <View style={styles.view2}>
+        <Text style={styles.wrapper}>2</Text>
+
+      </View>
+
+
+      <View style={styles.view3}>
+        <Text style={styles.wrapper}>3</Text>
+
+      </View>
+      
       <StatusBar style="auto" />
     </View>
   );
@@ -29,13 +41,29 @@ export default function App() {
 const styles = StyleSheet.create({
   body:{
     flex:1,
-    backgroundColor: 'white',
-    alignItems:'center',
+    flexDirection:'column',
+    backgroundColor: 'brown',
+    alignItems:'stretch',
     justifyContent: 'center',
-    borderWidth:10,
-    borderColor:'orange',
-    borderRadius:20,
-    margin: 40
+   
+  },
+  view1:{
+    flex:1,
+    backgroundColor:'orange',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  view2:{
+    flex:1,
+    backgroundColor:'violet',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  view3:{
+    flex:1,
+    backgroundColor:'pink',
+    alignItems:'center',
+    justifyContent:'center'
   },
  
   wrapper:{
@@ -44,9 +72,6 @@ const styles = StyleSheet.create({
     fontStyle:'black',
     margin:20
   }, 
-  button:{
-    width:200,
-    height:150
-
-  } 
+ 
+  
 });
