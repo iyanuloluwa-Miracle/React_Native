@@ -1,52 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react'
-import { Linking, StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-web';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import { Linking, StyleSheet, Text, View, ScrollView, RefreshControl, TextInput } from "react-native";
+
 
 export default function App() {
-  const [name,setName] = useState('Style Test')
 
-  
-  
-  const onClickHandler = ()=>{
-    setName('Style Test is Done')
-  }
-
-
-
+  const [name, SetName] = useState('')
+ 
 
   return (
     <View style={styles.body}>
-      <Text style={styles.wrapper}>{name}</Text>
-      <View style={styles.button}>
-        <Button title='update' onPress={onClickHandler}></Button>  
-      </View>
-      <StatusBar style="auto" />
+      <Text style={styles.text}>
+        Please Write your name:
+      </Text>
+      <TextInput 
+      style={styles.input}
+      placeholder="e.g. type something here"
+      onChangeText={(value) => SetName(value)}
+      secureTextEntry
+      />
+
+      <Text style={styles.text}>
+        Your name is : {name}
+      </Text>
+
     </View>
+   
   );
 }
 
 const styles = StyleSheet.create({
-  body:{
-    flex:1,
-    backgroundColor: 'white',
-    alignItems:'center',
-    justifyContent: 'center',
-    borderWidth:10,
-    borderColor:'orange',
-    borderRadius:20,
-    margin: 40
+  body: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "white",
+    alignItems:'center'
   },
- 
-  wrapper:{
-    color:'black',
-    fontSize:30,
-    fontStyle:'black',
-    margin:20
-  }, 
-  button:{
-    width:200,
-    height:150
+  input:{
+    borderWidth: 1,
+    width:230,
+    borderColor: 'pink',
+    borderRadius: 5,
+    textAlign: 'center',
+    fontSize:20
 
-  } 
+  },
+  text: {
+    fontSize: 27,
+    color: "Red",
+    margin:10
+    
+  },
 });
