@@ -1,66 +1,31 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Linking, StyleSheet, Text, View, ScrollView, RefreshControl } from "react-native";
-import { FlatList } from "react-native-web";
+import { Linking, StyleSheet, Text, View, ScrollView, RefreshControl, TextInput } from "react-native";
+
 
 export default function App() {
-  const [Items, setItems] = useState([
-    { name: "Item 1" },
-    { name: "Item 2" },
-    { name: "Item 3" },
-    { name: "Item 4" },
-    { name: "Item 5" },
-    { name: "Item 6" },
-    { name: "Item 7" },
-    { name: "Item 8" },
-    { name: "Item 9" },
-    { name: "Item 10" },
-    { name: "Item 11" },
-  ]);
 
-  const [Refreshing, setRefreshing] = useState(false)
-
-  const onRefresh = () => {
-    setRefreshing(true);
-    setItems([...Items, {key:69, name:'Item 69'}]); // Fixed the variable name
-    setRefreshing(false);
-  }
-  
+  const [name, SetName] = useState('')
+ 
 
   return (
-    <FlatList
-    data={Items}
-    renderItem={({item})=> (
-      <View style={styles.item}>
-        <Text style={styles.text}>{item.name}</Text>
-      </View>
+    <View style={styles.body}>
+      <Text style={styles.text}>
+        Please Write your name:
+      </Text>
+      <TextInput 
+      style={styles.input}
+      placeholder="e.g. type something here"
+      onChangeText={(value) => SetName(value)}
+      secureTextEntry
+      />
 
-    )}
-    refreshControl={<RefreshControl
-        refreshing={Refreshing}
-        onRefresh={onRefresh}
-        colors={['#ff00ff']}
-    
-    />
-    // <ScrollView 
-    //   style={styles.body}
-    //   refreshControl={<RefreshControl
-    //   refreshing={Refreshing}
-    //   onRefresh={onRefresh}
-    //   colors={['#ff00ff']}
-      
-    //      />}
-    //   >
-    //   {items.map((object) => {
-    //     return (
-    //       <View style={styles.item} key={object}>
-    //         <Text style={styles.text}>{object.item}</Text>
-    //       </View>
-    //     );
-    //   })}
+      <Text style={styles.text}>
+        Your name is : {name}
+      </Text>
 
-    //   <StatusBar style="auto" />
-    // </ScrollView>
+    </View>
+   
   );
 }
 
@@ -69,18 +34,21 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "white",
+    alignItems:'center'
   },
-  item: {
-    margin: 10,
-    backgroundColor: "pink",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  input:{
+    borderWidth: 1,
+    width:230,
+    borderColor: 'pink',
+    borderRadius: 5,
+    textAlign: 'center',
+    fontSize:20
 
+  },
   text: {
-    fontSize: 36,
-    color: "blue",
-    margin: 10,
-    fontStyle: "italic",
+    fontSize: 27,
+    color: "Red",
+    margin:10
+    
   },
 });
