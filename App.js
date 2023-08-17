@@ -1,11 +1,20 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Linking, StyleSheet, Text, View, ScrollView, RefreshControl, TextInput } from "react-native";
+import { StyleSheet, Text, View,  TouchableOpacity, TouchableHighlight, TextInput, Button, Pressable} from "react-native";
+
+
 
 
 export default function App() {
 
-  const [name, SetName] = useState('')
+  const [name, SetName] = useState('');
+  const [submitted, SetSubmitted] = useState(false)
+
+  const onPressHandler = () =>{
+    SetSubmitted(!submitted)
+
+  }
+
  
 
   return (
@@ -17,12 +26,37 @@ export default function App() {
       style={styles.input}
       placeholder="e.g. type something here"
       onChangeText={(value) => SetName(value)}
-      secureTextEntry
       />
+      {/* <Button 
+      title={submitted ? 'clear':'Submit'}
+      onPress={onPressHandler}
+      color='#00f'
 
-      <Text style={styles.text}>
-        Your name is : {name}
-      </Text>
+      /> */}
+      <Pressable
+      onPress={onPressHandler}
+      hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}
+      android_ripple={{ color: '#00f'}}
+      style={({pressed})=> [
+        { backgroundColor: pressed ? '#ddddd' : '#00ff00'},
+        styles.button
+      ]}>
+        <Text style={styles.text}>{submitted ? 'clear':'Submit'}</Text>
+
+      </Pressable>
+
+      {submitted ?
+        
+        <Text style={styles.text}>
+          You are registerd as {name}
+        </Text>
+        :
+        null
+
+      }
+
+      
+
 
     </View>
    
@@ -42,13 +76,21 @@ const styles = StyleSheet.create({
     borderColor: 'pink',
     borderRadius: 5,
     textAlign: 'center',
-    fontSize:20
+    fontSize:20,
+    marginBottom: 10
 
   },
   text: {
     fontSize: 27,
     color: "Red",
-    margin:10
-    
+    margin:10   
   },
+
+  button:{
+    width: 150,
+    height: 50,
+    backgroundColor:'#00ff00',
+    alignItems: 'center'
+
+  }
 });
