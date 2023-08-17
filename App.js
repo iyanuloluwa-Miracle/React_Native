@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View,  TouchableOpacity, TouchableHighlight, TextInput, Button, Pressable} from "react-native";
+import { StyleSheet, Text, View, Alert, TextInput, Button, Pressable, ToastAndroid} from "react-native";
 
 
 
@@ -11,7 +11,24 @@ export default function App() {
   const [submitted, SetSubmitted] = useState(false)
 
   const onPressHandler = () =>{
-    SetSubmitted(!submitted)
+    if(name.length > 3){
+      SetSubmitted(!submitted)
+
+    }else{
+      // Alert.alert('Warning', 'The name must be longer than 3 Characters',[
+      //   {text: 'Do not show again', onPress:() => console.warn('Do not show again')},
+      //   {text: 'Cancel', onPress:() => console.warn('Cancel Pressed!')},
+      //   {text: 'Ok', onPress:() => console.warn('Ok Pressed')}
+      // ])
+      ToastAndroid.show(
+        'The name must be longer than 3 Characters',
+      ToastAndroid.LONG,
+      ToastAndroid.CENTER
+      )
+
+
+    }
+
 
   }
 
